@@ -1,0 +1,51 @@
+# vnbb LLM Notes
+
+## Summary
+
+`vnbb` is a terminal-first stock chart explorer built around `vnstock` historical quote data. The app keeps the entrypoint thin, routes all market-data retrieval through a service layer, and renders candlesticks through `candlestick-chart`.
+
+## Scope Of Impact
+
+- `main.py` now bootstraps a complete TUI instead of printing a placeholder string
+- New `app/` package owns controller, data normalization, renderer adapters, and Rich UI
+- `pyproject.toml`, `requirements.txt`, and `uv.lock` now define the runtime graph
+- Warning handling is explicit for offline or missing-dependency scenarios
+
+## Affected Files And Functions
+
+- `main.py`
+  `main()`
+- `app/bootstrap.py`
+  `build_application()`
+- `app/controller.py`
+  `AppController.run()`
+- `app/services/quote_service.py`
+  `QuoteService.fetch_history()`
+  `QuoteService._build_quote()`
+  `QuoteService._normalize_history()`
+  `QuoteService._to_datetime()`
+- `app/renderers/candlestick_chart_renderer.py`
+  `PyCandlestickChartRenderer.render()`
+- `app/ui/prompts.py`
+  `PromptSession.collect_request()`
+  `PromptSession.collect_next_action()`
+  `PromptSession.show_error()`
+  `PromptSession.show_info()`
+- `app/ui/layout.py`
+  `RichScreen.terminal_size()`
+  `RichScreen.show_chart()`
+- `app/models/market_data.py`
+  `Candle.__post_init__()`
+
+## Runtime Notes
+
+- Preferred market-data entrypoint is `vnstock.Quote`, not `Vnstock().stock(...)`, to avoid eager initialization of unrelated components.
+- On fetch failure, the application emits a clear warning and exits rather than attempting sample-data fallback.
+- Candlestick rendering uses `candlestick-chart` only.
+
+## Documentation Links
+
+- Rich docs: https://context7.com/textualize/rich/llms.txt
+- Questionary docs: https://questionary.readthedocs.io/en/stable/
+- Python Candlestick Chart repo: https://github.com/BoboTiG/py-candlestick-chart
+- candlestick-chart PyPI: https://pypi.org/project/candlestick-chart/
