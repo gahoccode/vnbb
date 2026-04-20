@@ -1,6 +1,6 @@
 # vnbb
 
-[![Demo](docs/demo.png)]
+![Demo](docs/demo.png)
 
 vnbb giúp xem candlestick chứng khoán Việt Nam ngay trong terminal bằng thư viện `vnstock`
 
