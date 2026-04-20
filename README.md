@@ -1,6 +1,8 @@
 # vnbb
 
-vnbb giúp xem candlestick chứng khoán Việt Nam ngay trong terminal: `vnstock`
+[![Demo](docs/demo.png)]
+
+vnbb giúp xem candlestick chứng khoán Việt Nam ngay trong terminal bằng thư viện `vnstock`
 
 ![vnstock](https://img.shields.io/badge/vnstock-3.x-green)
 
@@ -88,15 +90,6 @@ Hiện tại `vnbb` cấu hình qua prompt, chưa có CLI flags hoặc config fi
 | `End date`   | `2024-12-31` | Ngày kết thúc theo `YYYY-MM-DD`                                   |
 
                     |
-
-## Documentation Links
-
-- vnstock GitHub: https://github.com/thinh-vu/vnstock
-- vnstock terms of use: https://vnstocks.com/docs/tai-lieu/dieu-khoan-su-dung
-- Rich docs: https://context7.com/textualize/rich/llms.txt
-- Questionary docs: https://questionary.readthedocs.io/en/stable/
-- Python Candlestick Chart repo: https://github.com/BoboTiG/py-candlestick-chart
-- candlestick-chart PyPI: https://pypi.org/project/candlestick-chart/
 
 ## Acknowledgements
 
